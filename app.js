@@ -1,4 +1,34 @@
 // Simple frontend behavior: theme toggle, form handling, and small accessibility helpers
+
+// Define arrays and functions in the global scope
+const restaurants = [
+  'https://secretpizzalv.hey-restaurants.com/',
+  'https://stksteakhouse.com/en-us/location/las-vegas/',
+  'https://lpmrestaurants.com/lasvegas/',
+  'https://www.momofuku.com/restaurants/las-vegas',
+  'https://taogroup.com/venues/tao-asian-bistro-las-vegas/',
+  'https://komodolv.com/',
+  'https://www.fontainebleaulasvegas.com/dining/restaurants/mother-wolf/?utm_medium=Search&utm_source=Google&utm_campaign=f&b_us_multi_search_gg_pur_evergreen&utm_content=Signature_Dining_-_Mother_Wolf_c__776633753896&utm_term=mother%20wolf%20las%20vegas_e'
+];
+
+const clubs = [
+  'https://taogroup.com/venues/marquee-nightclub-las-vegas/events/',
+  'https://taogroup.com/venues/hakkasan-nightclub-las-vegas/events/',
+  'https://taogroup.com/venues/omnia-nightclub-las-vegas/#page-body',
+  'https://www.livnightclub.com/las-vegas/events/',
+  'https://taogroup.com/venues/tao-nightclub-las-vegas/worship-thursdays-events/'
+];
+
+function getRandomRestaurant() {
+  const randomIndex = Math.floor(Math.random() * restaurants.length);
+  window.open(restaurants[randomIndex], '_blank');
+}
+
+function getRandomClub() {
+  const randomIndex = Math.floor(Math.random() * clubs.length);
+  window.open(clubs[randomIndex], '_blank');
+}
+
 (function(){
   const root = document.documentElement;
   const themeToggle = document.getElementById('themeToggle');
