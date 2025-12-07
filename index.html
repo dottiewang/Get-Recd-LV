@@ -6,12 +6,18 @@
   <title>Simple Site</title>
   <script>
     // Client-side fallback redirect: www.getrecdlv.com -> getrecdlv.com
+    // Also redirect root path to /index
     // This runs early in the head to avoid visible flicker when possible.
     (function(){
       try {
         if (location.hostname === 'www.getrecdlv.com') {
           var target = 'https://getrecdlv.com' + location.pathname + location.search + location.hash;
           // use replace so back button doesn't keep the redirecting URL in history
+          location.replace(target);
+        }
+        // Redirect root path to /index
+        if (location.pathname === '/' || location.pathname === '') {
+          var target = 'https://getrecdlv.com/index' + location.search + location.hash;
           location.replace(target);
         }
       } catch (e) {
