@@ -13,13 +13,15 @@
         .site-nav a:visited {
             color: white !important;
         }
-        /* also support the project's .nav rules for header spacing */
+        /* ensure nav list markers are visible like other pages */
+        .site-nav ul { list-style: disc; margin: 0; padding-left: 0.6rem; list-style-position: inside; }
+        .site-nav li { display: list-item; }
+        .site-nav li::marker { color: var(--muted); font-size: 1.1em; }
+        /* keep header nav styling consistent with other pages */
         .nav a {
             color: white !important;
             text-decoration: none;
         }
-        .nav ul { list-style: none; margin: 0; padding: 0; }
-        .nav li { display: inline-block; }
         
         main {
             text-align: center;
@@ -33,7 +35,7 @@
     <header class="site-header">
         <div class="container">
             <a class="logo" href="index.html">Get Rec'd LV</a>
-            <nav class="nav">
+            <nav class="site-nav">
                 <ul>
                     <li><a href="index.html">Changed my fucking mind</a></li>
                 </ul>
