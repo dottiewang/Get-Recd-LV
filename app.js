@@ -20,14 +20,14 @@ const clubs = [
 ];
 
 const nightclubs = [
-  'https://taogroup.com/venues/marquee-nightclub-las-vegas/events/',
-  'https://taogroup.com/venues/hakkasan-nightclub-las-vegas/events/',
-  'https://taogroup.com/venues/omnia-nightclub-las-vegas/#page-body',
-  'https://www.xslv.com/',
-  'https://www.draisgroup.com/las-vegas/',
-  'https://taogroup.com/venues/tao-nightclub-las-vegas/worship-thursdays-events/',
-  'https://zouk.com/las-vegas/',
-  'https://www.surrenderlv.com/'
+  'https://getrecdlv.com/marqueenightclub.html',
+  'https://getrecdlv.com/hakkasan.html',
+  'https://getrecdlv.com/omnianightclub.html',
+  'https://getrecdlv.com/xsnightclub.html',
+  'https://getrecdlv.com/drais.html',
+  'https://getrecdlv.com/tao.html',
+  'https://getrecdlv.com/zouk.html',
+  'https://getrecdlv.com/surrender.html'
 ];
 
 function getRandomRestaurant() {
@@ -37,7 +37,7 @@ function getRandomRestaurant() {
 
 function getRandomNightclub() {
   const randomIndex = Math.floor(Math.random() * nightclubs.length);
-  window.open(nightclubs[randomIndex], '_blank');
+  window.location.href = nightclubs[randomIndex];
 }
 
 function getRandomClub() {
