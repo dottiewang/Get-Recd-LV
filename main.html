@@ -13,6 +13,13 @@
         .site-nav a:visited {
             color: white !important;
         }
+        /* also support the project's .nav rules for header spacing */
+        .nav a {
+            color: white !important;
+            text-decoration: none;
+        }
+        .nav ul { list-style: none; margin: 0; padding: 0; }
+        .nav li { display: inline-block; }
         
         main {
             text-align: center;
@@ -23,7 +30,7 @@
     <header class="site-header">
         <div class="container">
             <a class="logo" href="index.html">Get Rec'd LV</a>
-            <nav class="site-nav">
+            <nav class="nav">
                 <ul>
                     <li><a href="index.html">Changed my fucking mind</a></li>
                 </ul>
