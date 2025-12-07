@@ -20,9 +20,9 @@ const clubs = [
 ];
 
 const nightclubs = [
-  'marqueenightclub.html',
-  'hakkasan.html',
-  'omnianightclub.html'
+  'https://getrecdlv.com/marqueenightclub',
+  'https://getrecdlv.com/hakkasan',
+  'https://getrecdlv.com/omnianightclub'
 ];
 
 function getRandomRestaurant() {
