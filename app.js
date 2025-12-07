@@ -19,9 +19,20 @@ const clubs = [
   'https://taogroup.com/venues/tao-nightclub-las-vegas/worship-thursdays-events/'
 ];
 
+const nightclubs = [
+  'marqueenightclub.html',
+  'hakkasan.html',
+  'omnianightclub.html'
+];
+
 function getRandomRestaurant() {
   const randomIndex = Math.floor(Math.random() * restaurants.length);
   window.open(restaurants[randomIndex], '_blank');
+}
+
+function getRandomNightclub() {
+  const randomIndex = Math.floor(Math.random() * nightclubs.length);
+  window.location.href = nightclubs[randomIndex];
 }
 
 function getRandomClub() {
