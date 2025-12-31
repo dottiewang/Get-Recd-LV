@@ -167,6 +167,12 @@ const recs = [
     location: "East of the Strip, near The Venetian",
     whatItIs: "A massive, high-tech entertainment venue known for its wraparound LED exterior and fully immersive interior experiences combining visuals, sound, and motion.",
     mustSee: "The exterior LED displays at night and the immersive shows inside (especially the full-sensory films and concerts)."
+  },
+  {
+    name: "AREA15",
+    location: "Just west of the Strip (near I-15 & Spring Mountain Rd)",
+    whatItIs: "An immersive, indoor entertainment complex packed with interactive art, VR, themed attractions, and food—more like a playground for the senses than a mall.",
+    mustSee: "Meow Wolf's Omega Mart, virtual reality experiences, and rotating pop-up art installations."
   }
 ];
 
