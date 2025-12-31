@@ -30,6 +30,17 @@ const nightclubs = [
   'https://getrecdlv.com/surrender.html'
 ];
 
+const barsandlounges = [
+  'https://getrecdlv.com/thechandelier.html',
+  'https://getrecdlv.com/eiffeltowerlounge.html',
+  'https://getrecdlv.com/thedorsey.html',
+  'https://getrecdlv.com/vesperbar.html',
+  'https://getrecdlv.com/skybar.html',
+  'https://getrecdlv.com/thevault.html',
+  'https://getrecdlv.com/1923prohibitionbar.html',
+  'https://getrecdlv.com/pianobar.html'
+];
+
 function getRandomRestaurant() {
   const randomIndex = Math.floor(Math.random() * restaurants.length);
   window.open(restaurants[randomIndex], '_blank');
@@ -38,6 +49,11 @@ function getRandomRestaurant() {
 function getRandomNightclub() {
   const randomIndex = Math.floor(Math.random() * nightclubs.length);
   window.location.href = nightclubs[randomIndex];
+}
+
+function getRandomBarOrLounge() {
+  const randomIndex = Math.floor(Math.random() * barsandlounges.length);
+  window.location.href = barsandlounges[randomIndex];
 }
 
 function getRandomClub() {
