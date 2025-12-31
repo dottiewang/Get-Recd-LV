@@ -71,12 +71,16 @@ function getRandomBarOrLounge() {
   function applyTheme(theme){
     if(theme === 'dark'){
       root.setAttribute('data-theme','dark');
-      themeToggle.textContent = '☀️';
-      themeToggle.setAttribute('aria-pressed','true');
+      if(themeToggle) {
+        themeToggle.textContent = '☀️';
+        themeToggle.setAttribute('aria-pressed','true');
+      }
     } else {
       root.removeAttribute('data-theme');
-      themeToggle.textContent = '🌙';
-      themeToggle.setAttribute('aria-pressed','false');
+      if(themeToggle) {
+        themeToggle.textContent = '🌙';
+        themeToggle.setAttribute('aria-pressed','false');
+      }
     }
   }
 
@@ -89,46 +93,52 @@ function getRandomBarOrLounge() {
     applyTheme(prefersDark ? 'dark' : 'light');
   }
 
-  themeToggle.addEventListener('click', ()=>{
-    const isDark = root.getAttribute('data-theme') === 'dark';
-    const next = isDark ? 'light' : 'dark';
-    applyTheme(next);
-    localStorage.setItem('theme', next);
-  });
+  if(themeToggle) {
+    themeToggle.addEventListener('click', ()=>{
+      const isDark = root.getAttribute('data-theme') === 'dark';
+      const next = isDark ? 'light' : 'dark';
+      applyTheme(next);
+      localStorage.setItem('theme', next);
+    });
+  }
 
   // Simple form submit handler with client-side validation
-  contactForm.addEventListener('submit', (e)=>{
-    e.preventDefault();
-    formStatus.textContent = '';
+  if(contactForm && formStatus) {
+    contactForm.addEventListener('submit', (e)=>{
+      e.preventDefault();
+      formStatus.textContent = '';
 
-    const data = {
-      name: contactForm.name.value.trim(),
-      email: contactForm.email.value.trim(),
-      message: contactForm.message.value.trim()
-    };
+      const data = {
+        name: contactForm.name.value.trim(),
+        email: contactForm.email.value.trim(),
+        message: contactForm.message.value.trim()
+      };
 
-    if(!data.name || data.name.length < 2){
-      formStatus.textContent = 'Please enter your name (2+ chars).';
-      return;
-    }
-    if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)){
-      formStatus.textContent = 'Please enter a valid email.';
-      return;
-    }
-    if(!data.message){
-      formStatus.textContent = 'Please enter a message.';
-      return;
-    }
+      if(!data.name || data.name.length < 2){
+        formStatus.textContent = 'Please enter your name (2+ chars).';
+        return;
+      }
+      if(!/^[^@\s]+@[^@\s]+\.[^@\s]+$/.test(data.email)){
+        formStatus.textContent = 'Please enter a valid email.';
+        return;
+      }
+      if(!data.message){
+        formStatus.textContent = 'Please enter a message.';
+        return;
+      }
 
-    // simulate sending
-    formStatus.textContent = 'Sending...';
-    setTimeout(()=>{
-      formStatus.textContent = 'Thanks — your message was sent.';
-      contactForm.reset();
-    }, 900);
-  });
+      // simulate sending
+      formStatus.textContent = 'Sending...';
+      setTimeout(()=>{
+        formStatus.textContent = 'Thanks — your message was sent.';
+        contactForm.reset();
+      }, 900);
+    });
+  }
 
   // Fill year
-  yearEl.textContent = new Date().getFullYear();
+  if(yearEl) {
+    yearEl.textContent = new Date().getFullYear();
+  }
 
 })();
