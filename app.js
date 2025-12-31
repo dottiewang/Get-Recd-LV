@@ -51,14 +51,14 @@ function getRandomNightclub() {
   window.location.href = nightclubs[randomIndex];
 }
 
-function getRandomBarOrLounge() {
-  const randomIndex = Math.floor(Math.random() * barsandlounges.length);
-  window.location.href = barsandlounges[randomIndex];
-}
-
 function getRandomClub() {
   const randomIndex = Math.floor(Math.random() * clubs.length);
   window.open(clubs[randomIndex], '_blank');
+}
+
+function getRandomBarOrLounge() {
+  const randomIndex = Math.floor(Math.random() * barsandlounges.length);
+  window.location.href = barsandlounges[randomIndex];
 }
 
 (function(){
