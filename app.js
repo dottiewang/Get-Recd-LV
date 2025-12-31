@@ -85,12 +85,6 @@ const recs = [
     mustSee: "The Sky Beam, which is the strongest beam of light in the world, shining from the top of the pyramid."
   },
   {
-    name: "The Mirage Volcano",
-    location: "The Mirage Hotel & Casino",
-    whatItIs: "A nightly volcano eruption show that shoots fire and water to music.",
-    mustSee: "The fiery explosions in sync with music, especially after dark."
-  },
-  {
     name: "Paris Las Vegas",
     location: "The Strip",
     whatItIs: "A replica of the Eiffel Tower and Parisian streets.",
