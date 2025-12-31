@@ -41,6 +41,8 @@ const barsandlounges = [
   'https://getrecdlv.com/julietcocktailroom.html'
 ];
 
+let lastRecIndex = -1;
+
 const recs = [
   {
     name: "Fremont Street Experience",
@@ -191,7 +193,12 @@ function getRandomBarOrLounge() {
 }
 
 function populateRandomRec() {
-  const rec = recs[Math.floor(Math.random() * recs.length)];
+  let randomIndex;
+  do {
+    randomIndex = Math.floor(Math.random() * recs.length);
+  } while (randomIndex === lastRecIndex);
+  lastRecIndex = randomIndex;
+  const rec = recs[randomIndex];
   document.getElementById('rec-title').textContent = rec.name;
   document.getElementById('rec-location').textContent = rec.location;
   document.getElementById('rec-what').textContent = rec.whatItIs;
