@@ -38,7 +38,7 @@ const barsandlounges = [
   'https://getrecdlv.com/skybar.html',
   'https://getrecdlv.com/thevault.html',
   'https://getrecdlv.com/1923prohibitionbar.html',
-  'https://getrecdlv.com/pianobar.html'
+  'https://getrecdlv.com/julietcocktailroom.html'
 ];
 
 function getRandomRestaurant() {
