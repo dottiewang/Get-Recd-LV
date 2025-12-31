@@ -34,16 +34,16 @@
         </div>
     </header>
     <main>
-        <h1>The Las Vegas Strip</h1>
+        <h1 id="rec-title"></h1>
         <div class="strip-details">
-            <p><strong>What it is:</strong> The world-famous stretch of Las Vegas Boulevard, lined with extravagant hotels, casinos, resorts, and entertainment venues.</p>
-            <p><strong>Must-See:</strong></p>
-            <ul class="must-see">
-                <li>The Bellagio Fountains</li>
-                <li>The Venetian’s canals</li>
-                <li>The Eiffel Tower replica at Paris Las Vegas</li>
-            </ul>
+            <p><strong>Location:</strong> <span id="rec-location"></span></p>
+            <p><strong>What it is:</strong> <span id="rec-what"></span></p>
+            <p><strong>Must-See:</strong> <span id="rec-must-see"></span></p>
         </div>
     </main>
+    <script src="app.js"></script>
+    <script>
+        window.onload = populateRandomRec;
+    </script>
 </body>
 </html>
