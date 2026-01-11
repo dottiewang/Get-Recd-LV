@@ -42,6 +42,27 @@ body{
 
 .visually-hidden{position:absolute!important;height:1px;width:1px;overflow:hidden;clip:rect(1px,1px,1px,1px);white-space:nowrap}
 
+.skip-link {
+  position: absolute;
+  top: -40px;
+  left: 6px;
+  background: var(--accent);
+  color: white;
+  padding: 8px;
+  text-decoration: none;
+  z-index: 100;
+}
+
+.skip-link:focus {
+  top: 6px;
+}
+
+/* Focus styles */
+.btn:focus, button:focus, a:focus {
+  outline: 2px solid var(--accent);
+  outline-offset: 2px;
+}
+
 .big-button {
   font-size: 2rem;
   padding: 1rem 2rem;

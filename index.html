@@ -3,7 +3,7 @@
 <head>
   <meta charset="utf-8" />
   <meta name="viewport" content="width=device-width,initial-scale=1" />
-  <title>Simple Site</title>
+  <title>Get Rec'd LV - Las Vegas Recommendations</title>
   <script>
     // Client-side fallback redirect: www.getrecdlv.com -> getrecdlv.com
     // Also redirect root path to /index
@@ -28,10 +28,11 @@
   <link rel="stylesheet" href="styles.css">
 </head>
 <body>
+  <a href="#main-content" class="skip-link">Skip to main content</a>
   <header class="site-header">
     <div class="container">
-      <a class="logo" href="#">Get Rec'd LV - For You, From People Who Know</a>
-      <nav class="site-nav">
+      <a class="logo" href="index.html">Get Rec'd LV - For You, From People Who Know</a>
+      <nav class="site-nav" aria-label="Main navigation">
         <ul>
           <!-- <li><a href="index.html">Home</a></li> -->
           <!-- <li><a href="main.html">Main Page</a></li> -->
@@ -40,13 +41,13 @@
     </div>
   </header>
 
-  <main>
+  <main id="main-content">
     <section class="hero">
       <div class="container">
         <h1>Where should I fucking go tonight</h1>
         <button class="big-button" onclick="window.location.href='main.html';">Get Rec'd</button>
-        <p class="alternative"><a href="#" onclick="getRandomBarOrLounge(); return false;">I just want to go to a fucking bar or lounge</a></p>
-        <p class="final-decision"><a href="#" onclick="getRandomNightclub(); return false;">fuck it, let's go to the club</a></p>
+        <p class="alternative"><button onclick="getRandomBarOrLounge(); return false;">I just want to go to a fucking bar or lounge</button></p>
+        <p class="final-decision"><button onclick="getRandomNightclub(); return false;">fuck it, let's go to the club</button></p>
         <!-- <button style="background-color: blue;" onclick="window.location.href='main.html';">Get Rec'd</button> -->
         <!-- <button onclick="window.location.href='main.html';">Get Rec'd</button> -->
       </div>

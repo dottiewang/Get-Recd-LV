@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Las Vegas Lounges</title>
+    <title>Las Vegas Recommendations - Get Rec'd LV</title>
     <link rel="stylesheet" href="styles.css">
     <style>
         .site-nav a {
@@ -23,17 +23,18 @@
     </style>
 </head>
 <body>
+    <a href="#main-content" class="skip-link">Skip to main content</a>
     <header class="site-header">
         <div class="container">
             <a class="logo" href="index.html">Get Rec'd LV</a>
-            <nav class="site-nav">
+            <nav class="site-nav" aria-label="Main navigation">
                 <ul>
-                    <li><a href="#" onclick="populateRandomRec(); return false;">Changed my fucking mind</a></li>
+                    <li><button onclick="populateRandomRec(); return false;">Changed my fucking mind</button></li>
                 </ul>
             </nav>
         </div>
     </header>
-    <main>
+    <main id="main-content">
         <h1 id="rec-title"></h1>
         <div class="strip-details">
             <p><strong>Location:</strong> <span id="rec-location"></span></p>
