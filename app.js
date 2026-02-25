@@ -130,9 +130,9 @@ const recs = [
   },
   {
     name: "Pinball Hall of Fame",
-    location: "East of the Strip",
-    whatItIs: "A nostalgic museum showcasing a massive collection of pinball machines, some dating back to the 1950s.",
-    mustSee: "Play the classic pinball machines for just a few quarters."
+    location: "4925 S Las Vegas Blvd, Las Vegas (near the south end of the Strip)",
+    whatItIs: "A massive, nonprofit arcade museum dedicated to classic and vintage pinball machines and retro arcade games. It features hundreds of fully playable machines from the 1950s to today, all maintained by the Las Vegas Pinball Collectors Club.",
+    mustSee: "Rare 1950s–1960s pinball machines, fully playable classic arcade games, vintage electromechanical pinball machines, and limited-edition and hard-to-find themed tables."
   },
   {
     name: "Stratosphere Tower",
