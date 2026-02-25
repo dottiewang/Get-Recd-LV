@@ -169,6 +169,12 @@ const recs = [
     location: "Just west of the Strip (near I-15 & Spring Mountain Rd)",
     whatItIs: "An immersive, indoor entertainment complex packed with interactive art, VR, themed attractions, and food—more like a playground for the senses than a mall.",
     mustSee: "Meow Wolf's Omega Mart, virtual reality experiences, and rotating pop-up art installations."
+  },
+  {
+    name: "Atomic Museum Las Vegas",
+    location: "755 E Flamingo Rd, Las Vegas",
+    whatItIs: "A Smithsonian-affiliated museum dedicated to the history of nuclear science and testing, especially the nuclear weapons testing that took place at the Nevada Test Site. It explores the Atomic Age, the Cold War, and the science behind nuclear technology.",
+    mustSee: "The Ground Zero Theater (simulated nuclear test experience), actual nuclear test artifacts and equipment, the B53 nuclear bomb casing, and Atomic Age pop culture exhibits."
   }
 ];
 
