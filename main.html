@@ -6,9 +6,11 @@
     <title>Las Vegas Recommendations - Get Rec'd LV</title>
     <link rel="stylesheet" href="styles.css">
     <style>
-        h1 {
+        .changed-mind-btn {
             background: transparent !important;
-            color: white !important;
+            border: 1px solid white;
+            color: white;
+            cursor: pointer;
         }
         .site-nav a {
             color: white !important;
@@ -33,12 +35,22 @@
             <a class="logo" href="index.html">Get Rec'd LV</a>
             <nav class="site-nav" aria-label="Main navigation">
                 <ul>
+                    <li><button class="changed-mind-btn" onclick="populateRandomRec(); return false;">Changed my fucking mind</button></li>
                 </ul>
             </nav>
         </div>
     </header>
     <main id="main-content">
-        <h1>I changed my fucking mind</h1>
+        <h1 id="rec-title"></h1>
+        <div class="strip-details">
+            <p><strong>Location:</strong> <span id="rec-location"></span></p>
+            <p><strong>What it is:</strong> <span id="rec-what"></span></p>
+            <p><strong>Must-See:</strong> <span id="rec-must-see"></span></p>
+        </div>
     </main>
+    <script src="app.js"></script>
+    <script>
+        window.onload = populateRandomRec;
+    </script>
 </body>
 </html>
