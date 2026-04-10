@@ -94,6 +94,12 @@ const speakeasies = [
     location: "The Strip (Caesars Palace)",
     whatItIs: "A hidden lounge combining a caviar bar with a rock-and-roll-inspired speakeasy concept.",
     mustSee: "The contrast between luxury caviar service and its edgy, music-driven atmosphere."
+  },
+  {
+    name: "Beauty & Essex",
+    location: "The Cosmopolitan",
+    whatItIs: "Pawn shop front leading to a secret upscale lounge.",
+    mustSee: "Hidden entrance through retail shop."
   }
 ];
 
