@@ -17,12 +17,13 @@ body{
 }
 .container{max-width:1000px;margin:0 auto;padding:1.1rem 1.5rem}
 .site-header{border-bottom:1px solid rgba(0,0,0,0.06);background:linear-gradient(180deg,transparent,rgba(0,0,0,0.02));}
-.site-header .container{display:flex;align-items:center;justify-content:space-between;padding-top:0.9rem;padding-bottom:0.9rem}
+.site-header .container{display:flex;align-items:center;justify-content:space-between;padding-top:0.7rem;padding-bottom:0.55rem}
 .logo{font-weight:700;color:var(--text);text-decoration:none}
 .nav a{margin-right:1rem;color:var(--muted);text-decoration:none}
 #themeToggle{border:0;background:transparent;font-size:1.1rem;cursor:pointer}
 
-.hero{padding:2.8rem 0 2.2rem;text-align:center}
+.hero{padding:0.9rem 0 1.4rem;text-align:center}
+.hero .container{padding-top:0.2rem;padding-bottom:0.8rem}
 .hero h1{margin:0 0 0.5rem;font-size:clamp(1.5rem,3vw,2.5rem)}
 .btn{display:inline-block;background:var(--accent);color:white;padding:0.6rem 1rem;border-radius:8px;text-decoration:none;border:0;cursor:pointer}
 
@@ -246,12 +247,17 @@ body{
   }
 
   .site-header .container {
-    padding-top: 0.45rem;
-    padding-bottom: 0.45rem;
+    padding-top: 0.35rem;
+    padding-bottom: 0.3rem;
   }
 
   .hero {
-    padding: 1.8rem 0 1.4rem;
+    padding: 0.4rem 0 1rem;
+  }
+
+  .hero .container {
+    padding-top: 0.05rem;
+    padding-bottom: 0.5rem;
   }
 
   #main-content > h1 {
