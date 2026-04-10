@@ -238,6 +238,12 @@ const recs = [
     location: "755 E Flamingo Rd, Las Vegas",
     whatItIs: "A Smithsonian-affiliated museum dedicated to the history of nuclear science and testing, especially the nuclear weapons testing that took place at the Nevada Test Site. It explores the Atomic Age, the Cold War, and the science behind nuclear technology.",
     mustSee: "The Ground Zero Theater (simulated nuclear test experience), actual nuclear test artifacts and equipment, the B53 nuclear bomb casing, and Atomic Age pop culture exhibits."
+  },
+  {
+    name: "Electra Cocktail Club",
+    location: "Inside The Venetian on the Las Vegas Strip",
+    whatItIs: "A stylish, high-energy cocktail lounge with DJs-somewhere between a bar and a nightclub.",
+    mustSee: "The massive digital art wall, creative signature cocktails, and the lively DJ-driven atmosphere."
   }
 ];
 
