@@ -220,3 +220,10 @@ body{
 .final-decision a:hover {
   color: var(--accent);
 }
+
+@media (max-width: 768px) {
+  .site-header .container {
+    padding-top: 0.65rem;
+    padding-bottom: 0.65rem;
+  }
+}
