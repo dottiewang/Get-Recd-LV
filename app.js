@@ -100,6 +100,24 @@ const speakeasies = [
     location: "The Cosmopolitan",
     whatItIs: "Pawn shop front leading to a secret upscale lounge.",
     mustSee: "Hidden entrance through retail shop."
+  },
+  {
+    name: "Chez Bippy",
+    location: "MGM Grand",
+    whatItIs: "Hidden speakeasy tucked inside a restaurant.",
+    mustSee: "Secretive entrance and retro vibe."
+  },
+  {
+    name: "Close Company",
+    location: "Venetian",
+    whatItIs: "Hidden cocktail bar from the Death & Co. team.",
+    mustSee: "High-end craft cocktails and discreet entrance."
+  },
+  {
+    name: "The Count Room",
+    location: "Flamingo",
+    whatItIs: "Mafia-themed hidden cocktail lounge.",
+    mustSee: "Mob-inspired decor and tucked-away entrance."
   }
 ];
 
@@ -244,6 +262,12 @@ const recs = [
     location: "Inside The Venetian on the Las Vegas Strip",
     whatItIs: "A stylish, high-energy cocktail lounge with DJs-somewhere between a bar and a nightclub.",
     mustSee: "The massive digital art wall, creative signature cocktails, and the lively DJ-driven atmosphere."
+  },
+  {
+    name: "John Wick Experience",
+    location: "AREA15 (just off the Las Vegas Strip, about 5-10 minutes west)",
+    whatItIs: "An immersive, interactive attraction where you step into the world of John Wick-part escape room, part live-action theater with actors, story missions, and cinematic sets.",
+    mustSee: "The Continental hotel sets, live actor interactions, mission-style gameplay, and the themed Continental bar with signature cocktails."
   }
 ];
 
