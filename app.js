@@ -37,7 +37,6 @@ const barsandlounges = [
   'https://getrecdlv.com/vesperbar.html',
   'https://getrecdlv.com/skybar.html',
   'https://getrecdlv.com/thevault.html',
-  'https://getrecdlv.com/1923prohibitionbar.html',
   'https://getrecdlv.com/julietcocktailroom.html'
 ];
 
@@ -77,12 +76,6 @@ const speakeasies = [
     location: "The Strip (The Cosmopolitan)",
     whatItIs: "A tucked-away mezcal and tequila bar hidden within a bustling food hall.",
     mustSee: "Its vibrant decor and extensive agave spirit selection."
-  },
-  {
-    name: "1923 Prohibition Bar",
-    location: "The Strip (Mandalay Bay / Venetian)",
-    whatItIs: "A Prohibition-era themed bar with vintage decor, live entertainment, and multiple hidden rooms.",
-    mustSee: "The live jazz performances and immersive 1920s atmosphere."
   },
   {
     name: "Nomikai",
