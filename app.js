@@ -104,6 +104,7 @@ const speakeasies = [
 ];
 
 let lastRecIndex = -1;
+let speakeasyDeck = [];
 
 const recs = [
   {
@@ -266,9 +267,23 @@ function getRandomBarOrLounge() {
   window.location.href = barsandlounges[randomIndex];
 }
 
+function refillSpeakeasyDeck() {
+  speakeasyDeck = speakeasies.map((_, index) => index);
+  for (let i = speakeasyDeck.length - 1; i > 0; i -= 1) {
+    const j = Math.floor(Math.random() * (i + 1));
+    const temp = speakeasyDeck[i];
+    speakeasyDeck[i] = speakeasyDeck[j];
+    speakeasyDeck[j] = temp;
+  }
+}
+
 function getRandomSpeakeasyRecommendation() {
-  const randomIndex = Math.floor(Math.random() * speakeasies.length);
-  const pick = speakeasies[randomIndex];
+  if (speakeasyDeck.length === 0) {
+    refillSpeakeasyDeck();
+  }
+
+  const nextIndex = speakeasyDeck.pop();
+  const pick = speakeasies[nextIndex];
 
   const container = document.getElementById('speakeasy-rec');
   const title = document.getElementById('speakeasy-title');
