@@ -1,0 +1,780 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<title>ReadingTheRoom4U</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Fraunces:opsz,wght@9..144,500;9..144,600;9..144,700&family=Manrope:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --bg: #17130f;
+    --bg-raised: #221c17;
+    --ticket: #f4ead9;
+    --ticket-shadow: #ddceb1;
+    --ink: #2b241c;
+    --ink-soft: #6b6053;
+    --cream: #efe6d6;
+    --cream-dim: #b6ab98;
+    --red: #c1442c;
+    --red-deep: #8f2f1c;
+    --jade: #4c7365;
+    --jade-deep: #2f4b40;
+    --gold: #cf9a3f;
+    --line: #3a322a;
+    --radius-card: 18px;
+  }
+  *{box-sizing:border-box;}
+  html,body{margin:0;padding:0;}
+  body{
+    background: var(--bg);
+    color: var(--cream);
+    font-family: 'Manrope', sans-serif;
+    line-height: 1.5;
+    -webkit-font-smoothing: antialiased;
+    padding: 0 0 4rem;
+  }
+  a{color:inherit;}
+  button{font-family:inherit;}
+
+  .wrap{
+    max-width: 720px;
+    margin: 0 auto;
+    padding: 0 1.1rem;
+  }
+
+  header.top{
+    padding: 2.4rem 1.1rem 1.6rem;
+    max-width: 720px;
+    margin: 0 auto;
+  }
+  header.top .kicker{
+    font-size: 0.82rem;
+    color: var(--gold);
+    letter-spacing: 0.02em;
+    margin: 0 0 0.35rem;
+  }
+  header.top h1{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: clamp(1.9rem, 6vw, 2.6rem);
+    margin: 0 0 0.5rem;
+    line-height: 1.05;
+    color: var(--ticket);
+  }
+  header.top p{
+    color: var(--cream-dim);
+    margin: 0;
+    max-width: 46ch;
+    font-size: 0.98rem;
+  }
+
+  .panel{
+    background: var(--bg-raised);
+    border: 1px solid var(--line);
+    border-radius: var(--radius-card);
+    padding: 1.2rem;
+    margin-bottom: 1.6rem;
+  }
+
+  .picker-row{
+    display: flex;
+    gap: 0.7rem;
+    flex-wrap: wrap;
+    align-items: flex-end;
+  }
+  .field{
+    flex: 1 1 130px;
+    min-width: 130px;
+  }
+  .field label{
+    display:block;
+    font-size: 0.78rem;
+    color: var(--cream-dim);
+    margin-bottom: 0.35rem;
+  }
+  select{
+    width: 100%;
+    background: var(--bg);
+    color: var(--cream);
+    border: 1px solid var(--line);
+    border-radius: 10px;
+    padding: 0.6rem 0.7rem;
+    font-size: 0.95rem;
+    font-family: inherit;
+    appearance: none;
+  }
+  select:focus-visible, button:focus-visible, .toggle:focus-visible{
+    outline: 2px solid var(--gold);
+    outline-offset: 2px;
+  }
+  .surprise-btn{
+    flex: 0 0 auto;
+    background: var(--red);
+    color: #fbeee6;
+    border: none;
+    border-radius: 10px;
+    padding: 0.65rem 1rem;
+    font-weight: 600;
+    font-size: 0.9rem;
+    cursor: pointer;
+  }
+  .surprise-btn:active{ transform: translateY(1px); }
+
+  .readout{
+    margin-top: 1rem;
+    font-size: 0.92rem;
+    color: var(--cream-dim);
+  }
+  .readout strong{ color: var(--ticket); font-weight: 600; }
+
+  .section-title{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.15rem;
+    color: var(--ticket);
+    margin: 0 0 0.15rem;
+  }
+  .section-sub{
+    color: var(--cream-dim);
+    font-size: 0.85rem;
+    margin: 0 0 0.9rem;
+  }
+
+  .strip{
+    display: flex;
+    gap: 0.8rem;
+    overflow-x: auto;
+    padding: 0.2rem 0.1rem 0.6rem;
+    margin: 0 -0.1rem 2rem;
+    scroll-snap-type: x proximity;
+  }
+  .stub{
+    flex: 0 0 auto;
+    width: 200px;
+    scroll-snap-align: start;
+    background: var(--ticket);
+    color: var(--ink);
+    border-radius: 14px;
+    padding: 0.9rem 0.95rem 1rem;
+    box-shadow: 0 3px 0 var(--ticket-shadow);
+    position: relative;
+  }
+  .stub .tag{
+    display:inline-block;
+    font-size: 0.7rem;
+    font-weight: 700;
+    padding: 0.2rem 0.5rem;
+    border-radius: 6px;
+    margin-bottom: 0.5rem;
+  }
+  .stub.flag .tag{ background: var(--red); color: #fbeee6; }
+  .stub.backup .tag{ background: var(--jade); color: #eaf3ee; }
+  .stub h4{
+    font-family: 'Fraunces', serif;
+    font-size: 1.02rem;
+    font-weight: 600;
+    margin: 0 0 0.25rem;
+  }
+  .stub .cuisine{
+    font-size: 0.76rem;
+    color: var(--ink-soft);
+    margin-bottom: 0.4rem;
+  }
+  .stub .note{
+    font-size: 0.8rem;
+    color: var(--ink-soft);
+    line-height: 1.35;
+    margin-bottom: 0.6rem;
+  }
+  .stub .yelp-link{
+    display: inline-block;
+    font-size: 0.78rem;
+  }
+
+  .divider{
+    border: none;
+    border-top: 1px dashed var(--line);
+    margin: 0 0 1.4rem;
+  }
+
+  .grid{
+    display: grid;
+    grid-template-columns: 1fr;
+    gap: 0.9rem;
+  }
+  @media (min-width: 560px){
+    .grid{ grid-template-columns: 1fr 1fr; }
+  }
+
+  .card{
+    background: var(--ticket);
+    color: var(--ink);
+    border-radius: var(--radius-card);
+    padding: 1.05rem 1.1rem 1.1rem;
+    box-shadow: 0 3px 0 var(--ticket-shadow);
+    display: flex;
+    flex-direction: column;
+    gap: 0.5rem;
+    position: relative;
+    transition: opacity 0.15s ease;
+  }
+  .card.set-aside{ opacity: 0.55; }
+  .card-top{
+    display:flex;
+    justify-content: space-between;
+    align-items: flex-start;
+    gap: 0.5rem;
+  }
+  .card h3{
+    font-family: 'Fraunces', serif;
+    font-weight: 600;
+    font-size: 1.12rem;
+    margin: 0;
+    line-height: 1.2;
+  }
+  .badge{
+    flex: 0 0 auto;
+    font-size: 0.68rem;
+    font-weight: 700;
+    padding: 0.22rem 0.5rem;
+    border-radius: 6px;
+    white-space: nowrap;
+  }
+  .badge.b-high{ background: var(--red); color: #fbeee6; }
+  .badge.b-mid{ background: var(--gold); color: #3a2a09; }
+  .badge.b-low{ background: var(--jade); color: #eaf3ee; }
+  .cuisine{
+    font-size: 0.78rem;
+    color: var(--ink-soft);
+    font-weight: 600;
+  }
+  .note{
+    font-size: 0.86rem;
+    color: var(--ink-soft);
+    line-height: 1.4;
+  }
+  .card-actions{
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    gap: 0.6rem;
+    margin-top: 0.4rem;
+    padding-top: 0.7rem;
+    border-top: 1px dashed var(--ticket-shadow);
+  }
+  .yelp-link{
+    font-size: 0.84rem;
+    font-weight: 700;
+    color: var(--red-deep);
+    text-decoration: none;
+    display: inline-flex;
+    align-items: center;
+    gap: 0.3rem;
+  }
+  .yelp-link:hover{ text-decoration: underline; }
+  .toggle{
+    font-size: 0.78rem;
+    font-weight: 600;
+    background: transparent;
+    border: 1px solid var(--ink-soft);
+    color: var(--ink-soft);
+    border-radius: 20px;
+    padding: 0.32rem 0.65rem;
+    cursor: pointer;
+  }
+  .toggle.on{
+    background: var(--jade);
+    border-color: var(--jade);
+    color: #eaf3ee;
+  }
+
+  footer{
+    max-width: 720px;
+    margin: 2.2rem auto 0;
+    padding: 0 1.1rem;
+    color: var(--cream-dim);
+    font-size: 0.78rem;
+    line-height: 1.5;
+  }
+
+  @media (prefers-reduced-motion: reduce){
+    *{ transition: none !important; }
+  }
+</style>
+</head>
+<body>
+
+<header class="top">
+  <p class="kicker">Spring Mountain Rd, Las Vegas</p>
+  <h1>ReadingTheRoom4U</h1>
+  <p>Eighteen Chinatown-area spots confirmed to run live Yelp wait times — no casino restaurants, all 4 stars and up. Reputation-based estimates plus a real-time check for each.</p>
+</header>
+
+<div class="wrap">
+
+  <div class="panel">
+    <div class="picker-row">
+      <div class="field">
+        <label for="day-select">Day</label>
+        <select id="day-select"></select>
+      </div>
+      <div class="field">
+        <label for="time-select">Time</label>
+        <select id="time-select"></select>
+      </div>
+      <button class="surprise-btn" id="surprise-btn" type="button">Surprise me</button>
+    </div>
+    <p class="readout" id="readout"></p>
+  </div>
+
+  <section id="backup-section">
+    <p class="section-title">Easier bets</p>
+    <p class="section-sub" id="backup-sub"></p>
+    <div class="strip" id="backup-strip"></div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <p class="section-title">All spots, easiest in first</p>
+    <p class="section-sub">Sorted from usually easy in to expect a wait for your selected time — under 15 min is easy, 15-30 min is some wait likely, over 30 min is expect a wait. Tap "Maybe" to set one aside without deleting it — it moves to the pile below.</p>
+    <div class="grid" id="full-grid"></div>
+  </section>
+
+  <hr class="divider">
+
+  <section id="flag-section">
+    <p class="section-title">Likely long waits</p>
+    <p class="section-sub" id="flag-sub"></p>
+    <div class="strip" id="flag-strip"></div>
+  </section>
+
+  <section id="maybe-section" style="display:none;">
+    <hr class="divider">
+    <p class="section-title">Maybe pile</p>
+    <p class="section-sub">Set aside for later — tap "Back to list" to bring one back into the running.</p>
+    <div class="grid" id="maybe-grid"></div>
+  </section>
+
+  <hr class="divider">
+
+  <section>
+    <p class="section-title">Runners-up</p>
+    <p class="section-sub">Good spots that didn’t make the timed list because they don’t run a confirmed live Yelp wait — worth keeping in mind anyway.</p>
+    <div class="grid" id="runners-up-grid"></div>
+  </section>
+
+</div>
+
+<footer>
+  Wait notes are reputation-based estimates from typical patterns, not live data. Tap "Check live wait" on any card for that restaurant's current Yelp page. The Maybe pile is stored only for this session.
+</footer>
+
+<script>
+const restaurants = [
+  {
+    id: 'china-mama',
+    name: 'China Mama',
+    cuisine: 'Northeastern Chinese, dumplings',
+    note: 'The neighborhood\u2019s most-hyped table — 45-60+ min waits are common on weekend nights. 4.6\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 55, peak: 'dinner', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: 'raku',
+    name: 'Raku',
+    cuisine: 'Japanese izakaya',
+    note: 'No reservations, ever — the line starts before opening and holds past 9pm. 4.5\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 50, peak: 'dinner', weekendHeavy: true, lateOk: true
+  },
+  {
+    id: 'shabuya',
+    name: 'Shabuya',
+    cuisine: 'Hot pot and sushi',
+    note: 'All-you-can-eat hot pot draws steady crowds, typically 11-21 min at peak. 4.9\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 21, peak: 'dinner', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: 'chubby-cattle-hotpot',
+    name: 'Chubby Cattle (Hot Pot & Sushi)',
+    cuisine: 'Hot pot and sushi',
+    note: 'The Chinatown hot pot location, not the BBQ spot — 4.4\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 30, peak: 'dinner', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: 'shanghai-taste',
+    name: 'ShangHai Taste',
+    cuisine: 'Shanghainese, soup dumplings',
+    note: 'No reservations at the original Spring Mountain spot — lines have run past 60 min on weekends. 4.6\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 50, peak: 'allday', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: 'chengdu-taste',
+    name: 'Chengdu Taste',
+    cuisine: 'Sichuan',
+    note: 'Mapo tofu and dan dan noodles pull a steady dinner crowd, typically 13-28 min. 4.5\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 28, peak: 'dinner', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: '888-korean-bbq',
+    name: '888 Korean BBQ',
+    cuisine: 'AYCE Korean BBQ',
+    note: 'No reservations, Yelp waitlist only — weekend waits have run 1-2+ hours. Confirmed live wait; 4.0\u2605+ across review sites.',
+    peakMinutes: 80, peak: 'dinner', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: 'monta-ramen',
+    name: 'Monta Japanese Noodle House',
+    cuisine: 'Ramen and noodles',
+    note: 'Tiny counter spot, locals\u2019 favorite ramen in the valley — lines build fast at dinner. 4.2\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 25, peak: 'allday', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: 'shang-artisan-noodle',
+    name: 'Shang Artisan Noodle',
+    cuisine: 'Hand-pulled noodles',
+    note: 'Small, fast-turning room — typically 13-28 min, but has run 30-90+ at peak. 4.6\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 28, peak: 'allday', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: 'ichiza-1-original',
+    name: 'Ichiza 1 Original',
+    cuisine: 'Japanese izakaya',
+    note: 'Vegas\u2019 first izakaya, open till near-dawn — waitlist opens at 5pm daily. 4.6\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 30, peak: 'dinner', weekendHeavy: true, lateOk: true
+  },
+  {
+    id: 'ichiza-2-hanare',
+    name: 'Ichiza 2 Hanare',
+    cuisine: 'Japanese izakaya, private rooms',
+    note: 'Sister spot with private dining rooms — same 5pm waitlist window. 4.7\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 25, peak: 'dinner', weekendHeavy: true, lateOk: true
+  },
+  {
+    id: 'hwaro-2',
+    name: 'Hwaro 2',
+    cuisine: 'AYCE Korean BBQ and sushi',
+    note: 'Usually packed on weekends, live current wait shown right on Yelp. 4.5\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 35, peak: 'dinner', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: 'taru',
+    name: 'TARU',
+    cuisine: 'Japanese fine dining, sushi',
+    note: 'Full bar, fine dining sushi in Chinatown. 4.7\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 20, peak: 'dinner', weekendHeavy: true, lateOk: true
+  },
+  {
+    id: 'sushi-shabu-time',
+    name: 'Sushi & Shabu Time',
+    cuisine: 'AYCE sushi and hot pot',
+    note: 'Sushi and shabu combo spot on Spring Mountain. 4.7\u2605, live wait confirmed.',
+    peakMinutes: 28, peak: 'dinner', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: 'mukgo-nolza',
+    name: 'Mukgo Nolza',
+    cuisine: 'Asian fusion, karaoke',
+    note: 'Asian fusion with a karaoke room attached. 4.6\u2605, live wait confirmed.',
+    peakMinutes: 20, peak: 'dinner', weekendHeavy: true, lateOk: true
+  },
+  {
+    id: 'pho-concept',
+    name: 'Pho Concept',
+    cuisine: 'Vietnamese pho',
+    note: 'Modern take on classic pho, quick turning tables. 4.3\u2605, live wait confirmed.',
+    peakMinutes: 18, peak: 'allday', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: 'lullabar',
+    name: 'LullaBar Thai Fusion & Izakaya',
+    cuisine: 'Thai fusion, izakaya',
+    note: 'Late-night Thai-Japanese mashup with live music some nights, open till 3-5am. Live wait confirmed; exact star rating unconfirmed.',
+    peakMinutes: 22, peak: 'dinner', weekendHeavy: true, lateOk: true
+  },
+  {
+    id: 'miu-japanese-bbq',
+    name: 'MIU Japanese BBQ',
+    cuisine: 'Japanese BBQ',
+    note: 'Upgrade from the old 168 K BBQ space on Spring Mountain. 4.4\u2605, live wait confirmed.',
+    peakMinutes: 25, peak: 'dinner', weekendHeavy: true, lateOk: false
+  }
+];
+
+const runnersUp = [
+  {
+    id: 'viet-noodle-bar',
+    name: 'Viet Noodle Bar',
+    cuisine: 'Vietnamese noodle soup',
+    note: 'Popular Vietnamese noodle counter. 4.0\u2605, live wait confirmed.'
+  },
+  {
+    id: 'pho-kim-long',
+    name: 'Pho Kim Long',
+    cuisine: 'Vietnamese pho',
+    note: 'A longtime local favorite for pho — no confirmed live Yelp wait, so it\u2019s here as a backup rather than in the timed list.'
+  },
+  {
+    id: 'nalsso',
+    name: 'Nalsso Korean BBQ & Sushi',
+    cuisine: 'Korean BBQ and sushi',
+    note: '4.2\u2605, but runs on reservations rather than a live waitlist, so it\u2019s a solid backup rather than a timed pick.'
+  }
+];
+
+const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
+const times = [
+  ['11:00','11:00 AM'], ['11:30','11:30 AM'], ['12:00','12:00 PM'], ['12:30','12:30 PM'],
+  ['13:00','1:00 PM'], ['13:30','1:30 PM'], ['17:00','5:00 PM'], ['17:30','5:30 PM'],
+  ['18:00','6:00 PM'], ['18:30','6:30 PM'], ['19:00','7:00 PM'], ['19:30','7:30 PM'],
+  ['20:00','8:00 PM'], ['20:30','8:30 PM'], ['21:00','9:00 PM'], ['21:30','9:30 PM'],
+  ['22:00','10:00 PM']
+];
+
+const maybeState = new Set();
+
+function computeMinutes(r, day, time){
+  const hour = parseFloat(time.split(':')[0]) + (time.split(':')[1] === '30' ? 0.5 : 0);
+  const isWeekend = ['Friday','Saturday','Sunday'].includes(day);
+  let minutes = r.peakMinutes * 0.5;
+  if (isWeekend && r.weekendHeavy) minutes += r.peakMinutes * 0.35;
+  if (r.peak === 'dinner' && hour >= 17.5 && hour <= 20.5) minutes += r.peakMinutes * 0.25;
+  if (r.peak === 'lunch' && hour >= 11 && hour <= 13.5) minutes += r.peakMinutes * 0.25;
+  if (r.peak === 'allday' && hour >= 11 && hour <= 21) minutes += r.peakMinutes * 0.15;
+  if (hour >= 21) minutes += r.lateOk ? r.peakMinutes * 0.05 : -r.peakMinutes * 0.3;
+  if (hour < 11.5) minutes -= r.peakMinutes * 0.25;
+  return Math.max(3, Math.round(minutes));
+}
+
+function badgeFor(minutes){
+  if (minutes > 30) return { cls: 'b-high', label: 'Expect a wait (~' + minutes + ' min)' };
+  if (minutes >= 15) return { cls: 'b-mid', label: 'Some wait likely (~' + minutes + ' min)' };
+  return { cls: 'b-low', label: 'Usually easy in (~' + minutes + ' min)' };
+}
+
+const yelpSlugs = {
+  'china-mama': 'china-mama-las-vegas-18',
+  'raku': 'raku-las-vegas',
+  'shabuya': 'shabuya-las-vegas-3',
+  'chubby-cattle-hotpot': 'chubby-cattle-las-vegas-17',
+  'shanghai-taste': 'shanghai-taste-chinatown-las-vegas-3',
+  'chengdu-taste': 'chengdu-taste-las-vegas-2',
+  '888-korean-bbq': '888-korean-bbq-las-vegas-2',
+  'monta-ramen': 'monta-las-vegas',
+  'shang-artisan-noodle': 'shang-artisan-noodle-las-vegas',
+  'ichiza-1-original': 'ichiza-las-vegas',
+  'pho-kim-long': 'pho-kim-long-las-vegas',
+  'taru': 'taru-las-vegas',
+  'hwaro-2': 'hwaro-2-las-vegas-4',
+  'ichiza-2-hanare': 'ichiza-2-hanare-las-vegas-2',
+  'sushi-shabu-time': 'sushi-and-shabu-time-las-vegas',
+  'mukgo-nolza': 'mukgo-nolza-las-vegas-4',
+  'pho-concept': 'pho-concept-las-vegas-2',
+  'lullabar': 'lullabar-thai-fusion-and-izakaya-las-vegas-6',
+  'viet-noodle-bar': 'viet-noodle-bar-las-vegas',
+  'miu-japanese-bbq': 'miu-japanese-bbq-las-vegas-2',
+  'nalsso': 'nalsso-korean-bbq-and-sushi-las-vegas-11'
+};
+
+function yelpUrl(name, id){
+  if (id && yelpSlugs[id]) return 'https://www.yelp.com/biz/' + yelpSlugs[id];
+  const q = encodeURIComponent(name + ' Las Vegas');
+  return 'https://www.yelp.com/search?find_desc=' + q;
+}
+
+const daySelect = document.getElementById('day-select');
+const timeSelect = document.getElementById('time-select');
+days.forEach(d => {
+  const opt = document.createElement('option');
+  opt.value = d; opt.textContent = d;
+  daySelect.appendChild(opt);
+});
+times.forEach(([val, label]) => {
+  const opt = document.createElement('option');
+  opt.value = val; opt.textContent = label;
+  timeSelect.appendChild(opt);
+});
+daySelect.value = 'Saturday';
+timeSelect.value = '19:00';
+
+function timeLabel(val){
+  const found = times.find(t => t[0] === val);
+  return found ? found[1] : val;
+}
+
+function render(){
+  const day = daySelect.value;
+  const time = timeSelect.value;
+
+  const allScored = restaurants.map(r => ({ ...r, minutes: computeMinutes(r, day, time) }));
+  const scored = allScored.filter(r => r.minutes <= 45);
+  const ranked = [...scored].sort((a, b) => b.minutes - a.minutes);
+
+  const flaggedCount = Math.max(1, Math.min(4, Math.floor(scored.length / 3)));
+  const backupCount = Math.max(1, Math.min(3, Math.floor(scored.length / 3)));
+  const flagged = ranked.filter(r => badgeFor(r.minutes).cls === 'b-high').slice(0, flaggedCount);
+  const backups = [...scored]
+    .filter(r => badgeFor(r.minutes).cls !== 'b-high')
+    .sort((a, b) => a.minutes - b.minutes)
+    .slice(0, backupCount);
+  const easiestFirst = [...scored].sort((a, b) => a.minutes - b.minutes);
+
+  document.getElementById('readout').innerHTML =
+    '<strong>' + day + ', ' + timeLabel(time) + '</strong> — here\u2019s how the room usually reads.' +
+    (allScored.length - scored.length > 0
+      ? ' <span style="color:var(--gold);">' + (allScored.length - scored.length) + ' spot' + (allScored.length - scored.length > 1 ? 's' : '') + ' hidden — over 45 min right now.</span>'
+      : '');
+
+  document.getElementById('flag-sub').textContent =
+    'These tend to run busiest at this time — plan on a wait or add your name early.';
+  document.getElementById('backup-sub').textContent =
+    'The relative best of this list at this time — since every spot here runs a live Yelp waitlist, "easier" means shorter, not empty.';
+
+  const flagSection = document.getElementById('flag-section');
+  const flagStrip = document.getElementById('flag-strip');
+  flagStrip.innerHTML = '';
+  if (flagged.length) {
+    flagSection.style.display = '';
+    flagged.forEach(r => {
+      const el = document.createElement('div');
+      el.className = 'stub flag';
+      el.innerHTML =
+        '<span class="tag">Likely wait</span>' +
+        '<h4>' + r.name + '</h4>' +
+        '<p class="cuisine">' + r.cuisine + '</p>' +
+        '<p class="note">' + r.note + '</p>' +
+        '<a class="yelp-link" href="' + yelpUrl(r.name, r.id) + '" target="_blank" rel="noopener">Check live wait</a>';
+      flagStrip.appendChild(el);
+    });
+  } else {
+    flagSection.style.display = 'none';
+  }
+
+  const backupSection = document.getElementById('backup-section');
+  const backupStrip = document.getElementById('backup-strip');
+  backupStrip.innerHTML = '';
+  if (backups.length) {
+    backupSection.style.display = '';
+    backups.forEach(r => {
+      const el = document.createElement('div');
+      el.className = 'stub backup';
+      el.innerHTML =
+        '<span class="tag">Easier bet</span>' +
+        '<h4>' + r.name + '</h4>' +
+        '<p class="cuisine">' + r.cuisine + '</p>' +
+        '<p class="note">' + r.note + '</p>' +
+        '<a class="yelp-link" href="' + yelpUrl(r.name, r.id) + '" target="_blank" rel="noopener">Check live wait</a>';
+      backupStrip.appendChild(el);
+    });
+  } else {
+    backupSection.style.display = 'none';
+  }
+
+  const grid = document.getElementById('full-grid');
+  grid.innerHTML = '';
+  const mainList = easiestFirst.filter(r => !maybeState.has(r.id));
+  const maybeList = easiestFirst.filter(r => maybeState.has(r.id));
+
+  mainList.forEach(r => {
+    const badge = badgeFor(r.minutes);
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML =
+      '<div class="card-top">' +
+        '<h3>' + r.name + '</h3>' +
+        '<span class="badge ' + badge.cls + '">' + badge.label + '</span>' +
+      '</div>' +
+      '<p class="cuisine">' + r.cuisine + '</p>' +
+      '<p class="note">' + r.note + '</p>' +
+      '<div class="card-actions">' +
+        '<a class="yelp-link" href="' + yelpUrl(r.name, r.id) + '" target="_blank" rel="noopener">Check live wait</a>' +
+        '<button class="toggle" type="button" data-id="' + r.id + '">Maybe</button>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+
+  grid.querySelectorAll('.toggle').forEach(btn => {
+    btn.addEventListener('click', () => {
+      maybeState.add(btn.getAttribute('data-id'));
+      render();
+    });
+  });
+
+  const maybeSection = document.getElementById('maybe-section');
+  const maybeGrid = document.getElementById('maybe-grid');
+  maybeGrid.innerHTML = '';
+  if (maybeList.length) {
+    maybeSection.style.display = '';
+    maybeList.forEach(r => {
+      const badge = badgeFor(r.minutes);
+      const card = document.createElement('div');
+      card.className = 'card set-aside';
+      card.innerHTML =
+        '<div class="card-top">' +
+          '<h3>' + r.name + '</h3>' +
+          '<span class="badge ' + badge.cls + '">' + badge.label + '</span>' +
+        '</div>' +
+        '<p class="cuisine">' + r.cuisine + '</p>' +
+        '<p class="note">' + r.note + '</p>' +
+        '<div class="card-actions">' +
+          '<a class="yelp-link" href="' + yelpUrl(r.name, r.id) + '" target="_blank" rel="noopener">Check live wait</a>' +
+          '<button class="toggle on" type="button" data-id="' + r.id + '">Back to list</button>' +
+        '</div>';
+      maybeGrid.appendChild(card);
+    });
+    maybeGrid.querySelectorAll('.toggle').forEach(btn => {
+      btn.addEventListener('click', () => {
+        maybeState.delete(btn.getAttribute('data-id'));
+        render();
+      });
+    });
+  } else {
+    maybeSection.style.display = 'none';
+  }
+}
+
+document.getElementById('surprise-btn').addEventListener('click', () => {
+  const day = daySelect.value;
+  const time = timeSelect.value;
+  const scored = restaurants
+    .map(r => ({ ...r, minutes: computeMinutes(r, day, time) }))
+    .filter(r => r.minutes <= 45);
+  const lowWait = scored.filter(r => r.minutes < 15);
+  const pool = lowWait.length ? lowWait : scored;
+  if (!pool.length) {
+    alert('Everything on the list is running over 45 min right now \u2014 try a different time.');
+    return;
+  }
+  const pick = pool[Math.floor(Math.random() * pool.length)];
+  alert('Tonight\u2019s pick: ' + pick.name + '\n\n' + pick.note);
+});
+
+daySelect.addEventListener('change', render);
+timeSelect.addEventListener('change', render);
+
+function renderRunnersUp(){
+  const grid = document.getElementById('runners-up-grid');
+  grid.innerHTML = '';
+  runnersUp.forEach(r => {
+    const card = document.createElement('div');
+    card.className = 'card';
+    card.innerHTML =
+      '<div class="card-top">' +
+        '<h3>' + r.name + '</h3>' +
+      '</div>' +
+      '<p class="cuisine">' + r.cuisine + '</p>' +
+      '<p class="note">' + r.note + '</p>' +
+      '<div class="card-actions">' +
+        '<a class="yelp-link" href="' + yelpUrl(r.name, r.id) + '" target="_blank" rel="noopener">View on Yelp</a>' +
+      '</div>';
+    grid.appendChild(card);
+  });
+}
+
+renderRunnersUp();
+render();
+</script>
+
+</body>
+</html>
