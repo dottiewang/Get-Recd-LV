@@ -109,19 +109,6 @@
     outline: 2px solid var(--gold);
     outline-offset: 2px;
   }
-  .surprise-btn{
-    flex: 0 0 auto;
-    background: var(--red);
-    color: #fbeee6;
-    border: none;
-    border-radius: 10px;
-    padding: 0.65rem 1rem;
-    font-weight: 600;
-    font-size: 0.9rem;
-    cursor: pointer;
-  }
-  .surprise-btn:active{ transform: translateY(1px); }
-
   .readout{
     margin-top: 1rem;
     font-size: 0.92rem;
@@ -309,7 +296,7 @@
 <header class="top">
   <p class="kicker">Spring Mountain Rd, Las Vegas</p>
   <h1>ReadingTheRoom4U</h1>
-  <p>Eighteen Chinatown-area spots confirmed to run live Yelp wait times — no casino restaurants, all 4 stars and up. Reputation-based estimates plus a real-time check for each.</p>
+  <p>Chinatown-area spots confirmed to run live Yelp wait times — no casino restaurants. Reputation-based estimates plus a real-time check for each.</p>
 </header>
 
 <div class="wrap">
@@ -324,7 +311,6 @@
         <label for="time-select">Time</label>
         <select id="time-select"></select>
       </div>
-      <button class="surprise-btn" id="surprise-btn" type="button">Surprise me</button>
     </div>
     <p class="readout" id="readout"></p>
   </div>
@@ -499,6 +485,20 @@ const restaurants = [
     cuisine: 'Japanese BBQ',
     note: 'Upgrade from the old 168 K BBQ space on Spring Mountain. 4.4\u2605, live wait confirmed.',
     peakMinutes: 25, peak: 'dinner', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: 'nalsso',
+    name: 'Nalsso Korean BBQ & Sushi',
+    cuisine: 'Korean BBQ and sushi',
+    note: 'Korean BBQ and sushi with a live Yelp waitlist. 4.2\u2605 on Yelp, live wait confirmed.',
+    peakMinutes: 35, peak: 'dinner', weekendHeavy: true, lateOk: false
+  },
+  {
+    id: 'mikiya',
+    name: 'Mikiya Wagyu Shabu House',
+    cuisine: 'Wagyu shabu-shabu',
+    note: 'Wagyu-focused shabu house with a live Yelp waitlist. Check Yelp for the current wait.',
+    peakMinutes: 30, peak: 'dinner', weekendHeavy: true, lateOk: false
   }
 ];
 
@@ -515,12 +515,6 @@ const runnersUp = [
     cuisine: 'Vietnamese pho',
     note: 'A longtime local favorite for pho — no confirmed live Yelp wait, so it\u2019s here as a backup rather than in the timed list.'
   },
-  {
-    id: 'nalsso',
-    name: 'Nalsso Korean BBQ & Sushi',
-    cuisine: 'Korean BBQ and sushi',
-    note: '4.2\u2605, but runs on reservations rather than a live waitlist, so it\u2019s a solid backup rather than a timed pick.'
-  }
 ];
 
 const days = ['Sunday','Monday','Tuesday','Wednesday','Thursday','Friday','Saturday'];
@@ -574,7 +568,8 @@ const yelpSlugs = {
   'lullabar': 'lullabar-thai-fusion-and-izakaya-las-vegas-6',
   'viet-noodle-bar': 'viet-noodle-bar-las-vegas',
   'miu-japanese-bbq': 'miu-japanese-bbq-las-vegas-2',
-  'nalsso': 'nalsso-korean-bbq-and-sushi-las-vegas-11'
+  'nalsso': 'nalsso-korean-bbq-and-sushi-las-vegas-11',
+  'mikiya': 'mikiya-wagyu-shabu-house-las-vegas-4'
 };
 
 function yelpUrl(name, id){
@@ -733,22 +728,6 @@ function render(){
     maybeSection.style.display = 'none';
   }
 }
-
-document.getElementById('surprise-btn').addEventListener('click', () => {
-  const day = daySelect.value;
-  const time = timeSelect.value;
-  const scored = restaurants
-    .map(r => ({ ...r, minutes: computeMinutes(r, day, time) }))
-    .filter(r => r.minutes <= 45);
-  const lowWait = scored.filter(r => r.minutes < 15);
-  const pool = lowWait.length ? lowWait : scored;
-  if (!pool.length) {
-    alert('Everything on the list is running over 45 min right now \u2014 try a different time.');
-    return;
-  }
-  const pick = pool[Math.floor(Math.random() * pool.length)];
-  alert('Tonight\u2019s pick: ' + pick.name + '\n\n' + pick.note);
-});
 
 daySelect.addEventListener('change', render);
 timeSelect.addEventListener('change', render);
