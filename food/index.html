@@ -88,6 +88,23 @@
     flex: 1 1 130px;
     min-width: 130px;
   }
+  .surprise-btn{
+    flex: 1 1 100%;
+    min-height: 44px;
+    background: var(--red);
+    color: #fbeee6;
+    border: 0;
+    border-radius: 10px;
+    padding: 0.65rem 1rem;
+    font: inherit;
+    font-weight: 700;
+    font-size: 0.9rem;
+    cursor: pointer;
+    touch-action: manipulation;
+    -webkit-appearance: none;
+    appearance: none;
+  }
+  .surprise-btn:active{ transform: translateY(1px); }
   .field label{
     display:block;
     font-size: 0.78rem;
@@ -311,6 +328,7 @@
         <label for="time-select">Time</label>
         <select id="time-select"></select>
       </div>
+      <button class="surprise-btn" id="surprise-btn" type="button">Surprise me</button>
     </div>
     <p class="readout" id="readout"></p>
   </div>
@@ -731,6 +749,25 @@ function render(){
 
 daySelect.addEventListener('change', render);
 timeSelect.addEventListener('change', render);
+
+document.getElementById('surprise-btn').addEventListener('click', () => {
+  const day = daySelect.value;
+  const time = timeSelect.value;
+  const scored = restaurants
+    .map(r => ({ ...r, minutes: computeMinutes(r, day, time) }))
+    .filter(r => r.minutes <= 45);
+  const lowWait = scored.filter(r => r.minutes < 15);
+  const pool = lowWait.length ? lowWait : scored;
+  const readout = document.getElementById('readout');
+
+  if (!pool.length) {
+    readout.innerHTML = 'Everything on the list is running over 45 min right now — try a different time.';
+    return;
+  }
+
+  const pick = pool[Math.floor(Math.random() * pool.length)];
+  readout.innerHTML = '<strong>Tonight\'s surprise pick: ' + pick.name + '</strong> — ' + pick.note;
+});
 
 function renderRunnersUp(){
   const grid = document.getElementById('runners-up-grid');
