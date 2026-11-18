@@ -17,7 +17,7 @@
     --ink-soft: #6b6053;
     --cream: #efe6d6;
     --cream-dim: #b6ab98;
-    --red: #c1442c;
+    --red: #8f2f1c;
     --red-deep: #8f2f1c;
     --jade: #4c7365;
     --jade-deep: #2f4b40;
@@ -175,7 +175,7 @@
   }
   .stub.flag .tag{ background: var(--red); color: #fbeee6; }
   .stub.backup .tag{ background: var(--jade); color: #eaf3ee; }
-  .stub h4{
+  .stub h3{
     font-family: 'Fraunces', serif;
     font-size: 1.02rem;
     font-weight: 600;
@@ -303,6 +303,23 @@
     line-height: 1.5;
   }
 
+  .skip{
+    position: absolute;
+    top: -40px;
+    left: 6px;
+    background: #17130f;
+    color: #fbeee6;
+    padding: 8px;
+    text-decoration: none;
+    z-index: 100;
+  }
+
+  .skip:focus{
+    top: 6px;
+    outline: 2px solid rgb(207, 154, 63);
+    outline-offset: 2px;
+  }
+
   @media (prefers-reduced-motion: reduce){
     *{ transition: none !important; }
   }
@@ -310,12 +327,15 @@
 </head>
 <body>
 
+<a class="skip" href="#main-content">Skip to results</a>
+
 <header class="top">
   <p class="kicker">Spring Mountain Rd, Las Vegas</p>
   <h1>ReadingTheRoom4U</h1>
   <p>Chinatown-area spots confirmed to run live Yelp wait times — no casino restaurants. Reputation-based estimates plus a real-time check for each.</p>
 </header>
 
+<main id="main-content">
 <div class="wrap">
 
   <div class="panel">
@@ -334,7 +354,7 @@
   </div>
 
   <section id="backup-section">
-    <p class="section-title">Easier bets</p>
+    <h2 class="section-title">Easier bets</h2>
     <p class="section-sub" id="backup-sub"></p>
     <div class="strip" id="backup-strip"></div>
   </section>
@@ -371,6 +391,7 @@
   </section>
 
 </div>
+</main>
 
 <footer>
   Wait notes are reputation-based estimates from typical patterns, not live data. Tap "Check live wait" on any card for that restaurant's current Yelp page. The Maybe pile is stored only for this session.
@@ -654,7 +675,7 @@ function render(){
       el.className = 'stub flag';
       el.innerHTML =
         '<span class="tag">Likely wait</span>' +
-        '<h4>' + r.name + '</h4>' +
+        '<h3>' + r.name + '</h3>' +
         '<p class="cuisine">' + r.cuisine + '</p>' +
         '<p class="note">' + r.note + '</p>' +
         '<a class="yelp-link" href="' + yelpUrl(r.name, r.id) + '" target="_blank" rel="noopener">Check live wait</a>';
@@ -674,7 +695,7 @@ function render(){
       el.className = 'stub backup';
       el.innerHTML =
         '<span class="tag">Easier bet</span>' +
-        '<h4>' + r.name + '</h4>' +
+        '<h3>' + r.name + '</h3>' +
         '<p class="cuisine">' + r.cuisine + '</p>' +
         '<p class="note">' + r.note + '</p>' +
         '<a class="yelp-link" href="' + yelpUrl(r.name, r.id) + '" target="_blank" rel="noopener">Check live wait</a>';
