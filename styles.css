@@ -90,7 +90,7 @@ body{
 .big-button {
   font-size: 2rem;
   padding: 1rem 2rem;
-  background: var(--accent);
+  background: linear-gradient(135deg, #2563eb, #172554);
   color: white;
   border: none;
   border-radius: 15px;
@@ -139,7 +139,7 @@ body{
 }
 
 .alternative button {
-  background: linear-gradient(135deg, var(--accent), #1e40af);
+  background: linear-gradient(135deg, #2563eb, #172554);
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -202,7 +202,7 @@ body{
 }
 
 .final-decision button {
-  background: linear-gradient(135deg, #be185d, #be123c);
+  background: linear-gradient(135deg, #be185d, #701a4b);
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
