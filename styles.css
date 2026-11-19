@@ -90,7 +90,7 @@ body{
 .big-button {
   font-size: 2rem;
   padding: 1rem 2rem;
-  background: linear-gradient(135deg, #2563eb, #172554);
+  background: #5592de;
   color: white;
   border: none;
   border-radius: 15px;
@@ -139,7 +139,7 @@ body{
 }
 
 .alternative button {
-  background: linear-gradient(135deg, #2563eb, #172554);
+  background: linear-gradient(135deg, #4577b5, #3472d8);
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -202,7 +202,7 @@ body{
 }
 
 .final-decision button {
-  background: linear-gradient(135deg, #be185d, #701a4b);
+  background: linear-gradient(135deg, #cb3e84, #d73753);
   color: white;
   border: none;
   padding: 0.8rem 1.5rem;
@@ -211,17 +211,17 @@ body{
   font-weight: 600;
   cursor: pointer;
   transition: transform 0.2s ease, box-shadow 0.2s ease, opacity 0.2s ease;
-  box-shadow: 0 4px 6px rgba(190, 24, 93, 0.3);
+  box-shadow: 0 4px 6px rgba(203, 62, 132, 0.3);
 }
 
 .final-decision button:hover {
   transform: translateY(-2px);
-  box-shadow: 0 6px 12px rgba(190, 24, 93, 0.4);
+  box-shadow: 0 6px 12px rgba(203, 62, 132, 0.4);
 }
 
 .final-decision button:active {
   transform: translateY(0);
-  box-shadow: 0 2px 4px rgba(190, 24, 93, 0.2);
+  box-shadow: 0 2px 4px rgba(203, 62, 132, 0.2);
 }
 
 .final-decision a {
