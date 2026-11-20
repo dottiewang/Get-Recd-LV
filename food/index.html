@@ -147,21 +147,19 @@
   }
 
   .strip{
-    display: flex;
-    gap: 1.1rem;
-    overflow-x: auto;
-    padding: 0.2rem 0.1rem 0.6rem;
-    margin: 0 -0.1rem 2rem;
-    scroll-snap-type: x proximity;
+    display: grid;
+    grid-template-columns: minmax(0, 1fr);
+    gap: 0.8rem;
+    margin: 0 0 1.5rem;
+  }
+  @media (min-width: 360px){
+    .strip{ grid-template-columns: repeat(2, minmax(0, 1fr)); }
   }
   .stub{
-    flex: 0 0 auto;
-    width: min(280px, 85%);
-    scroll-snap-align: start;
     background: var(--ticket);
     color: var(--ink);
     border-radius: 14px;
-    padding: 1.1rem 1.2rem;
+    padding: 0.85rem 1rem;
     box-shadow: 0 3px 0 var(--ticket-shadow);
     position: relative;
   }
@@ -184,13 +182,13 @@
   .stub .cuisine{
     font-size: 0.76rem;
     color: var(--ink-soft);
-    margin-bottom: 0.4rem;
+    margin: 0.25rem 0;
   }
   .stub .note{
     font-size: 0.8rem;
     color: var(--ink-soft);
     line-height: 1.35;
-    margin-bottom: 0.6rem;
+    margin: 0 0 0.4rem;
   }
   .stub .yelp-link{
     display: inline-block;
@@ -216,19 +214,21 @@
     background: var(--ticket);
     color: var(--ink);
     border-radius: var(--radius-card);
-    padding: 1.05rem 1.1rem 1.1rem;
+    padding: 0.85rem 1rem;
     box-shadow: 0 3px 0 var(--ticket-shadow);
     display: flex;
     flex-direction: column;
-    gap: 0.5rem;
+    gap: 0.35rem;
     position: relative;
     transition: opacity 0.15s ease;
   }
   .card.set-aside{ opacity: 0.55; }
+  .card p{ margin: 0; }
   .card-top{
     display:flex;
     justify-content: space-between;
     align-items: flex-start;
+    flex-wrap: wrap;
     gap: 0.5rem;
   }
   .card h3{
@@ -244,7 +244,7 @@
     font-weight: 700;
     padding: 0.22rem 0.5rem;
     border-radius: 6px;
-    white-space: nowrap;
+    max-width: 100%;
   }
   .badge.b-high{ background: var(--red); color: #fbeee6; }
   .badge.b-mid{ background: var(--gold); color: #3a2a09; }
@@ -264,8 +264,8 @@
     align-items: center;
     justify-content: space-between;
     gap: 0.6rem;
-    margin-top: 0.4rem;
-    padding-top: 0.7rem;
+    margin-top: 0.2rem;
+    padding-top: 0.45rem;
     border-top: 1px dashed var(--ticket-shadow);
   }
   .yelp-link{
